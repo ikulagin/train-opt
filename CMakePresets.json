@@ -1,0 +1,84 @@
+{
+  "version": 3,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 21
+  },
+  "configurePresets": [
+    {
+      "name": "base",
+      "displayName": "base",
+      "generator": "Ninja",
+      "binaryDir": "${sourceParentDir}/train-opt-build-${presetName}",
+      "toolset": {},
+      "environment": {
+        "llvm-workdir": "${sourceParentDir}/llvm-workdir"
+      },
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_C_COMPILER": "clang",
+        "CMAKE_CXX_COMPILER": "clang++",
+
+        "LLVM_DIR": "$env{llvm-workdir}/llvm-build-${presetName}/lib/cmake/llvm",
+
+        "BUILD_SHARED_LIBS": "On",
+        "LLVM_ENABLE_LIBCXX": "On",
+        "LLVM_USE_LINKER": "lld",
+        "LLVM_ENABLE_RTTI": "On",
+        "LLVM_ENABLE_ASSERTIONS": "On"
+      }
+    },
+    {
+      "name": "debug",
+      "inherits": [
+        "base"
+      ],
+      "displayName": "Debug",
+      "generator": "Ninja",
+      "toolset": {},
+      "environment": {},
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "release",
+      "inherits": [
+        "base"
+      ],
+      "displayName": "Release",
+      "generator": "Ninja",
+      "toolset": {},
+      "environment": {},
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    },
+    {
+      "name": "relwithdebinfo",
+      "inherits": [
+        "base"
+      ],
+      "displayName": "RelWithDebInfo",
+      "generator": "Ninja",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "RelWithDebInfo"
+      }
+    }
+
+  ],
+  "buildPresets": [
+    {
+      "name": "debug",
+      "configurePreset": "debug"
+    },
+    {
+      "name": "release",
+      "configurePreset": "release"
+    },
+    {
+      "name": "relwithdebinfo",
+      "configurePreset": "relwithdebinfo"
+    }
+  ]
+}

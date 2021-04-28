@@ -1,0 +1,12 @@
+#ifndef FUNCTION_PASS
+#define FUNCTION_PASS(NAME, CREATE_PASS)
+#endif
+FUNCTION_PASS("topt-sscp", trainOpt::SSCPPass{})
+FUNCTION_PASS("topt-sccp", trainOpt::SCCPPass{})
+#undef FUNCTION_PASS
+
+#ifndef FUNCTION_PASS_WITH_PARAMS
+#define FUNCTION_PASS_WITH_PARAMS(NAME, CREATE_PASS, PARSER, PARAMS)
+#endif
+FUNCTION_PASS_WITH_PARAMS("topt-simplify-cfg", trainOpt::SimplifyCFG, trainOpt::parseSimplifyCFGOptions, "d;c;s")
+#undef FUNCTION_PASS_WITH_PARAMS

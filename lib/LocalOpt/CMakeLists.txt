@@ -1,8 +1,5 @@
-
-add_llvm_library(TOPTConstProp
-  SSCP.cpp
-  SCCP.cpp
-  SCCPSolver.cpp
+add_llvm_library(LLVMLocalOpt
+  LVN.cpp
 
   DEPENDS
   intrinsics_gen
